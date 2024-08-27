@@ -11,7 +11,7 @@ class LinearQueue:
     def is_full(self):
         return self.rear == self.size - 1
 
-    def insert(self, item):
+    def enqueue(self, item):
         if self.is_full():
             print("Queue Overflow")
         else:
@@ -22,7 +22,7 @@ class LinearQueue:
             print(f"Inserted {item}")
         self.display_front_rear()
 
-    def delete(self):
+    def dequeue(self):
         if self.is_empty():
             print("Queue Underflow")
         else:
@@ -54,8 +54,8 @@ def main():
     
     while True:
         print("\nQueue Operations:")
-        print("1. Insert")
-        print("2. Delete")
+        print("1. Enqueue")
+        print("2. Dequeue")
         print("3. Display")
         print("4. Exit")
         
@@ -63,9 +63,9 @@ def main():
         
         if choice == 1:
             item = int(input("Enter the item to insert: "))
-            queue.insert(item)
+            queue.enqueue(item)
         elif choice == 2:
-            queue.delete()
+            queue.dequeue()
         elif choice == 3:
             queue.display()
         elif choice == 4:

@@ -9,41 +9,39 @@ class CircularQueue:
             print("Queue Overflow! Cannot insert", item)
             return
 
-        if self.front == -1:  # Queue is empty
+        if self.front == -1:
             self.front = 0
         self.rear = (self.rear + 1) % self.size
         self.queue[self.rear] = item
-        print(f"Inserted {item}. Front: {self.front}, Rear: {self.rear}")
+        print(f"Inserted {item} into queue")
 
     def dequeue(self):
-        if self.front == -1:  # Queue is empty
+        if self.front == -1:
             print("Queue Underflow! Cannot delete")
             return
 
-        item = self.queue[self.front]
+        deleted_item = self.queue[self.front]
         self.queue[self.front] = None
 
-        if self.front == self.rear:  # Queue becomes empty after this operation
+        if self.front == self.rear:
             self.front = self.rear = -1
         else:
             self.front = (self.front + 1) % self.size
 
-        print(f"Deleted {item}. Front: {self.front}, Rear: {self.rear}")
-        return item
+        print(f"Deleted {deleted_item} from queue")
+        return deleted_item
 
     def display(self):
-        if self.front == -1:  # Queue is empty
+        if self.front == -1:
             print("Queue is empty")
             return
 
         print("Queue contents:", end=" ")
-        i = self.front
-        while True:
-            print(self.queue[i], end=" ")
-            if i == self.rear:
-                break
-            i = (i + 1) % self.size
-        print(f"\nFront: {self.front}, Rear: {self.rear}")
+        if self.rear >= self.front:
+            print(" ".join(map(str, self.queue[self.front:self.rear + 1])))
+        else:
+            print(" ".join(map(str, self.queue[self.front:self.size])), end=" ")
+            print(" ".join(map(str, self.queue[0:self.rear + 1])))
 
 # Interactive user input
 def main():
