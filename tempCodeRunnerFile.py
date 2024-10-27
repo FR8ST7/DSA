@@ -1,1 +1,1 @@
-stack= Stack()
+1
