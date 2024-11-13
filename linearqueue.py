@@ -49,26 +49,39 @@ class LinearQueue:
         print(f"Front: {self.front}, Rear: {self.rear}")
 
 def main():
-    queue_size = int(input("Enter the size of the queue: "))
+    try:
+        queue_size = int(input("Enter the size of the queue: "))
+    except ValueError:
+        print("Invalid input. Please enter an integer.")
+        return
+
     queue = LinearQueue(queue_size)
-    
+
     while True:
         print("\nQueue Operations:")
         print("1. Enqueue")
         print("2. Dequeue")
         print("3. Display")
         print("4. Exit")
-        
-        choice = int(input("Enter your choice: "))
-        
+
+        try:
+            choice = int(input("Enter your choice: "))
+        except ValueError:
+            print("Invalid choice, please enter a number between 1 and 4.")
+            continue
+
         if choice == 1:
-            item = int(input("Enter the item to insert: "))
-            queue.enqueue(item)
+            try:
+                item = int(input("Enter the item to insert: "))
+                queue.enqueue(item)
+            except ValueError:
+                print("Invalid input. Please enter an integer.")
         elif choice == 2:
             queue.dequeue()
         elif choice == 3:
             queue.display()
         elif choice == 4:
+            print("Exiting...")
             break
         else:
             print("Invalid choice, please try again.")
